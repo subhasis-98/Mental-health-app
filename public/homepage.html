@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Homepage</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: linear-gradient(to right, #e2e2e2, #c9d6ff);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 🌐 Navbar */
+        .navbar {
+            background-color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar h2 {
+            font-size: 1.6rem;
+            color: #333;
+        }
+
+        .navbar button {
+            background-color: #6a5acd;
+            color: white;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            font-size: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar button:hover {
+            background-color: #4b3cbf;
+        }
+
+        /* 🧍 Container */
+        .container {
+            background-color: white;
+            max-width: 500px;
+            margin: 4rem auto;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .container h3 {
+            font-size: 1.8rem;
+            color: #444;
+            margin-bottom: 1.5rem;
+        }
+
+        .sub-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .user-info {
+            background-color: #f5f5ff;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            font-size: 1rem;
+            color: #333;
+            min-width: 120px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .user-info span {
+            font-weight: 600;
+            color: #111;
+            margin-left: 4px;
+        }
+
+        @media (max-width: 600px) {
+            .navbar h2 {
+                font-size: 1.3rem;
+            }
+
+            .navbar button {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .container {
+                margin: 2rem 1rem;
+                padding: 2rem;
+            }
+
+            .container h3 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+    <script type="module" src="/public/js/homepage.js"></script>
+</head>
+
+<body>
+    <!-- 🌐 Navbar -->
+    <nav class="navbar">
+        <h2>Welcome to the Dashboard</h2>
+        <button id="logout">Logout</button>
+    </nav>
+
+    <!-- 👤 User Info Section -->
+    <div class="container">
+        <h3>Hello, <span id="loggedUserFName"></span> <span id="loggedUserLName"></span> 👋</h3>
+
+    </div>
+</body>
+
+</html>
