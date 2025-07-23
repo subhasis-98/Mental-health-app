@@ -7,7 +7,7 @@
     <title>Wellness Tracker</title>
     <link rel="stylesheet" href="project/styles.css">
 
-<script type="module" src="public/js/homepage.js"></script>
+    <script type="module" src="public/js/homepage.js"></script>
 </head>
 
 <body>
@@ -16,14 +16,24 @@
         <header class="header">
             <div class="profile-section">
                 <div class="avatar">
-                    <img src="/project/7309667.jpg" alt="Profile" />
+                    <img src="project/7309667.jpg" alt="Profile" />
                 </div>
                 <div class="greeting">
                     <h3>Hello, <span id="loggedUserFName"></span> <span id="loggedUserLName"></span> 👋</h3>
 
                     <p>How was your sleep?</p>
                     <a href="analysis/index.html">Measure </a>
+
                 </div>
+                <button id="logout" style="background-color: #6a5acd;
+                            color: white;
+                            border: none;
+                            padding: 0.6rem 1.2rem;
+                            font-size: 1rem;
+                            border-radius: 8px;
+                            cursor: pointer;
+                            transition: background-color 0.3s ease;
+                            margin-left:30px;">Logout</button>
             </div>
 
 
@@ -130,10 +140,10 @@
             <h2>Activities for today</h2>
             <div class="activity-list">
                 <div class="activity-item" data-action="save-mood">
-                    <div class="activity-icon orange">💾</div>
+                    <div class="activity-icon orange">🧠</div>
                     <div class="activity-content">
-                        <h3>Save your mood</h3>
-                        <p>Capture current mood in journal entries</p>
+                        <h3>Check your stress level</h3>
+                        <p>Get an instant idea of your stress level.</p>
                     </div>
                     <div class="activity-arrow">→</div>
                 </div>
@@ -142,7 +152,7 @@
                     <div class="activity-icon purple">😊</div>
                     <div class="activity-content">
                         <h3>How do you feel?</h3>
-                        <p>Add your emotions</p>
+                        <p>Add your emotions.</p>
                     </div>
                     <div class="activity-arrow">→</div>
                 </div>
@@ -194,6 +204,7 @@
             </div>
         </nav>
     </div>
+    
 
     <script src="/project/script.js"></script>
 </body>

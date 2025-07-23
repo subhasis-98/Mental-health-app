@@ -1,493 +1,498 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    min-height: 100vh;
-    line-height: 1.5;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Helvetica", sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  line-height: 1.5;
 }
 
 .app-container {
-    max-width: 414px;
-    margin: 0 auto;
-    background: #f8fafc;
-    min-height: 100vh;
-    position: relative;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  max-width: 414px;
+  margin: 0 auto;
+  background: #f8fafc;
+  min-height: 100vh;
+  position: relative;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
 /* Header Styles */
 .header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    padding: 40px 24px 32px;
-    border-radius: 0 0 32px 32px;
-    color: white;
-    position: relative;
-    overflow: hidden;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 40px 24px 32px;
+  border-radius: 0 0 32px 32px;
+  color: white;
+  position: relative;
+  overflow: hidden;
 }
 
 .header::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
-    pointer-events: none;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  pointer-events: none;
 }
 
 .profile-section {
-    display: flex;
-    align-items: center;
-    margin-bottom: 32px;
-    position: relative;
-    z-index: 1;
+  display: flex;
+  align-items: center;
+  margin-bottom: 32px;
+  position: relative;
+  z-index: 1;
 }
 
 .avatar {
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 3px solid rgba(255,255,255,0.3);
-    margin-right: 16px;
-    transition: transform 0.3s ease;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  margin-right: 16px;
+  transition: transform 0.3s ease;
 }
 
 .avatar:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 
 .avatar img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .greeting h1 {
-    font-size: 24px;
-    font-weight: 600;
-    margin-bottom: 4px;
-    letter-spacing: -0.5px;
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  letter-spacing: -0.5px;
 }
 
 .greeting p {
-    font-size: 16px;
-    opacity: 0.9;
-    font-weight: 400;
+  font-size: 16px;
+  opacity: 0.9;
+  font-weight: 400;
 }
 
 .mood-selector {
-    display: flex;
-    justify-content: space-between;
-    gap: 12px;
-    position: relative;
-    z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  position: relative;
+  z-index: 1;
 }
 
 .mood-option {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(10px);
-    border: 2px solid transparent;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  border: 2px solid transparent;
 }
 
 .mood-option:hover {
-    transform: translateY(-2px);
-    background: rgba(255,255,255,0.3);
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.3);
 }
 
 .mood-option.selected {
-    background: rgba(255,255,255,0.4);
-    border-color: rgba(255,255,255,0.6);
-    transform: scale(1.1);
+  background: rgba(255, 255, 255, 0.4);
+  border-color: rgba(255, 255, 255, 0.6);
+  transform: scale(1.1);
 }
 
 /* Calendar Styles */
 .calendar-section {
-    padding: 24px;
-    background: white;
-    margin: 16px 24px;
-    border-radius: 16px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  padding: 24px;
+  background: white;
+  margin: 16px 24px;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
 }
 
 .calendar-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
 }
 
 .calendar-header h2 {
-    font-size: 20px;
-    font-weight: 600;
-    color: #1e293b;
+  font-size: 20px;
+  font-weight: 600;
+  color: #1e293b;
 }
 
 .calendar-icon {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 .week-view {
-    display: flex;
-    justify-content: space-between;
-    gap: 8px;
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
 }
 
 .day-item {
-    flex: 1;
-    text-align: center;
-    padding: 12px 4px;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: all 0.3s ease;
+  flex: 1;
+  text-align: center;
+  padding: 12px 4px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .day-item:hover {
-    background: #f1f5f9;
+  background: #f1f5f9;
 }
 
 .day-item.active {
-    background: #3b82f6;
-    color: white;
-    transform: translateY(-2px);
+  background: #3b82f6;
+  color: white;
+  transform: translateY(-2px);
 }
 
 .day-name {
-    display: block;
-    font-size: 12px;
-    font-weight: 500;
-    opacity: 0.7;
-    margin-bottom: 4px;
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  opacity: 0.7;
+  margin-bottom: 4px;
 }
 
 .day-number {
-    display: block;
-    font-size: 16px;
-    font-weight: 600;
+  display: block;
+  font-size: 16px;
+  font-weight: 600;
 }
 
 /* Quick Support Styles */
 .quick-support {
-    padding: 0 24px;
-    margin-bottom: 24px;
+  padding: 0 24px;
+  margin-bottom: 24px;
 }
 
 .quick-support h2 {
-    font-size: 20px;
-    font-weight: 600;
-    color: #1e293b;
-    margin-bottom: 16px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 16px;
 }
 
 .support-cards {
-    display: flex;
-    gap: 12px;
+  display: flex;
+  gap: 12px;
 }
 
 .support-card {
-    flex: 1;
-    background: white;
-    padding: 20px 16px;
-    border-radius: 16px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  flex: 1;
+  background: white;
+  padding: 20px 16px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
 }
 
 .support-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
 }
 
 .support-card.emergency {
-    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-    color: white;
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  color: white;
 }
 
 .support-icon {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 .support-card span {
-    font-weight: 500;
-    font-size: 14px;
+  font-weight: 500;
+  font-size: 14px;
 }
 
 /* Journal Section Styles */
 .journal-section {
-    padding: 0 24px;
-    margin-bottom: 24px;
+  padding: 0 24px;
+  margin-bottom: 24px;
 }
 
 .journal-section h2 {
-    font-size: 20px;
-    font-weight: 600;
-    color: #1e293b;
-    margin-bottom: 16px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 16px;
 }
 
 .journal-options {
-    display: flex;
-    gap: 12px;
+  display: flex;
+  gap: 12px;
 }
 
 .journal-card {
-    flex: 1;
-    background: white;
-    padding: 20px 12px;
-    border-radius: 16px;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  flex: 1;
+  background: white;
+  padding: 20px 12px;
+  border-radius: 16px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
 }
 
 .journal-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
 }
 
 .journal-icon {
-    width: 48px;
-    height: 48px;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 12px;
-    font-size: 24px;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 12px;
+  font-size: 24px;
 }
 
 .mood-icon {
-    background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+  background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
 }
 
 .diary-icon {
-    background: linear-gradient(135deg, #d299c2 0%, #fef9d7 100%);
+  background: linear-gradient(135deg, #d299c2 0%, #fef9d7 100%);
 }
 
 .meditation-icon {
-    background: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%);
+  background: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%);
 }
 
 .journal-card span {
-    font-size: 14px;
-    font-weight: 500;
-    color: #475569;
+  font-size: 14px;
+  font-weight: 500;
+  color: #475569;
 }
 
 /* Activities Section Styles */
 .activities-section {
-    padding: 0 24px;
-    margin-bottom: 24px;
+  padding: 0 24px;
+  margin-bottom: 24px;
 }
 
 .activities-section h2 {
-    font-size: 20px;
-    font-weight: 600;
-    color: #1e293b;
-    margin-bottom: 16px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 16px;
 }
 
 .activity-list {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .activity-item {
-    background: white;
-    padding: 16px;
-    border-radius: 16px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  background: white;
+  padding: 16px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
 }
 
 .activity-item:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
 }
 
 .activity-icon {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-    color: white;
-    flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: white;
+  flex-shrink: 0;
 }
 
 .activity-icon.orange {
-    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+  background: linear-gradient(135deg, #b0ffcc 0%, #6e8486 100%);
 }
 
 .activity-icon.purple {
-    background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+  background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
 }
 
 .activity-icon.blue {
-    background: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%);
+  background: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%);
 }
 
 .activity-icon.light-blue {
-    background: linear-gradient(135deg, #d299c2 0%, #fef9d7 100%);
+  background: linear-gradient(135deg, #d299c2 0%, #fef9d7 100%);
 }
 
 .activity-content {
-    flex: 1;
+  flex: 1;
 }
 
 .activity-content h3 {
-    font-size: 16px;
-    font-weight: 600;
-    color: #1e293b;
-    margin-bottom: 4px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 4px;
 }
 
 .activity-content p {
-    font-size: 14px;
-    color: #64748b;
+  font-size: 14px;
+  color: #64748b;
 }
 
 .activity-arrow {
-    font-size: 16px;
-    color: #cbd5e1;
-    font-weight: bold;
+  font-size: 16px;
+  color: #cbd5e1;
+  font-weight: bold;
 }
 
 /* Daily Tip Styles */
 .daily-tip {
-    padding: 0 24px;
-    margin-bottom: 100px;
+  padding: 0 24px;
+  margin-bottom: 100px;
 }
 
 .daily-tip h2 {
-    font-size: 20px;
-    font-weight: 600;
-    color: #1e293b;
-    margin-bottom: 16px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 16px;
 }
 
 .tip-content {
-    background: white;
-    padding: 20px;
-    border-radius: 16px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  background: white;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
 }
 
 .tip-content p {
-    font-size: 16px;
-    color: #475569;
-    line-height: 1.6;
+  font-size: 16px;
+  color: #475569;
+  line-height: 1.6;
 }
 
 /* Bottom Navigation Styles */
 .bottom-nav {
-    position: fixed;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
-    max-width: 414px;
-    background: white;
-    padding: 16px 24px 32px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    border-radius: 24px 24px 0 0;
-    box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
-    backdrop-filter: blur(10px);
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 414px;
+  background: white;
+  padding: 16px 24px 32px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 24px 24px 0 0;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
 }
 
 .nav-item {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .nav-item:hover {
-    background: #f1f5f9;
-    transform: translateY(-2px);
+  background: #f1f5f9;
+  transform: translateY(-2px);
 }
 
 .nav-item.active {
-    background: #3b82f6;
-    color: white;
+  background: #3b82f6;
+  color: white;
 }
 
 .nav-item.active .nav-icon {
-    filter: brightness(0) invert(1);
+  filter: brightness(0) invert(1);
 }
 
 .nav-icon {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 /* Responsive Design */
 @media (max-width: 480px) {
-    .app-container {
-        max-width: 100%;
-    }
-    
-    .mood-selector {
-        gap: 8px;
-    }
-    
-    .mood-option {
-        width: 44px;
-        height: 44px;
-        font-size: 20px;
-    }
-    
-    .journal-options {
-        flex-direction: column;
-    }
-    
-    .support-cards {
-        flex-direction: column;
-    }
+  .app-container {
+    max-width: 100%;
+  }
+
+  .mood-selector {
+    gap: 8px;
+  }
+
+  .mood-option {
+    width: 44px;
+    height: 44px;
+    font-size: 20px;
+  }
+
+  .journal-options {
+    flex-direction: column;
+  }
+
+  .support-cards {
+    flex-direction: column;
+  }
 }
 
 /* Animations */
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .calendar-section,
@@ -495,753 +500,757 @@ body {
 .journal-section,
 .activities-section,
 .daily-tip {
-    animation: fadeIn 0.6s ease-out;
+  animation: fadeIn 0.6s ease-out;
 }
 
 /* Interactive States */
 .mood-option:active {
-    transform: scale(0.95);
+  transform: scale(0.95);
 }
 
 .activity-item:active,
 .support-card:active,
 .journal-card:active {
-    transform: scale(0.98);
+  transform: scale(0.98);
 }
 
 .day-item:active {
-    transform: scale(0.95);
+  transform: scale(0.95);
 }
 
 /* Loading Animation */
 .loading {
-    opacity: 0.7;
-    pointer-events: none;
+  opacity: 0.7;
+  pointer-events: none;
 }
 
 .loading::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 20px;
-    height: 20px;
-    margin: -10px 0 0 -10px;
-    border: 2px solid #3b82f6;
-    border-radius: 50%;
-    border-top-color: transparent;
-    animation: spin 1s infinite linear;
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border: 2px solid #3b82f6;
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: spin 1s infinite linear;
 }
 
 @keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* Mood Popup Styles */
 .mood-popup-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 1000;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
 }
 
 .mood-popup-overlay.active {
-    opacity: 1;
-    visibility: visible;
+  opacity: 1;
+  visibility: visible;
 }
 
 .mood-popup {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%) translateY(100%);
-    width: 100%;
-    max-width: 414px;
-    background: white;
-    border-radius: 24px 24px 0 0;
-    max-height: 90vh;
-    overflow-y: auto;
-    overflow-x: hidden;
-    transition: transform 0.3s ease;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) translateY(100%);
+  width: 100%;
+  max-width: 414px;
+  background: white;
+  border-radius: 24px 24px 0 0;
+  max-height: 90vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  transition: transform 0.3s ease;
 }
 
 .mood-popup-overlay.active .mood-popup {
-    transform: translateX(-50%) translateY(0);
+  transform: translateX(-50%) translateY(0);
 }
 
 .mood-popup-header {
-    padding: 16px 24px 0;
-    display: flex;
-    justify-content: flex-end;
-    position: sticky;
-    top: 0;
-    background: white;
-    z-index: 10;
+  padding: 16px 24px 0;
+  display: flex;
+  justify-content: flex-end;
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 10;
 }
 
 .mood-popup-close {
-    background: #f1f5f9;
-    border: none;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-    color: #64748b;
-    cursor: pointer;
-    transition: all 0.2s ease;
+  background: #f1f5f9;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .mood-popup-close:hover {
-    background: #e2e8f0;
-    transform: scale(1.1);
+  background: #e2e8f0;
+  transform: scale(1.1);
 }
 
 .mood-popup-content {
-    padding: 0 24px 32px;
+  padding: 0 24px 32px;
 }
 
 .mood-tabs {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 24px;
-    background: #f1f5f9;
-    padding: 4px;
-    border-radius: 12px;
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+  background: #f1f5f9;
+  padding: 4px;
+  border-radius: 12px;
 }
 
 .mood-tab {
-    flex: 1;
-    padding: 12px 16px;
-    border: none;
-    background: transparent;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: 500;
-    color: #64748b;
-    cursor: pointer;
-    transition: all 0.2s ease;
+  flex: 1;
+  padding: 12px 16px;
+  border: none;
+  background: transparent;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .mood-tab.active {
-    background: #6366f1;
-    color: white;
+  background: #6366f1;
+  color: white;
 }
 
 .mood-view {
-    display: none;
+  display: none;
 }
 
 .mood-view.active {
-    display: block;
+  display: block;
 }
 
 .mood-view h2 {
-    font-size: 24px;
-    font-weight: 600;
-    color: #1e293b;
-    text-align: center;
-    margin-bottom: 32px;
+  font-size: 24px;
+  font-weight: 600;
+  color: #1e293b;
+  text-align: center;
+  margin-bottom: 32px;
 }
 
 .mood-emoji-selector {
-    display: flex;
-    justify-content: space-between;
-    gap: 12px;
-    margin-bottom: 32px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 32px;
 }
 
 .mood-emoji {
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    background: #f1f5f9;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 28px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border: 3px solid transparent;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #f1f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 3px solid transparent;
 }
 
 .mood-emoji:hover {
-    transform: scale(1.1);
-    background: #e2e8f0;
+  transform: scale(1.1);
+  background: #e2e8f0;
 }
 
 .mood-emoji.selected {
-    border-color: #6366f1;
-    background: #eef2ff;
-    transform: scale(1.1);
+  border-color: #6366f1;
+  background: #eef2ff;
+  transform: scale(1.1);
 }
 
 .mood-textarea {
-    margin-bottom: 32px;
+  margin-bottom: 32px;
 }
 
 .mood-textarea textarea {
-    width: 100%;
-    padding: 16px;
-    border: 1px solid #e2e8f0;
-    border-radius: 12px;
-    font-size: 16px;
-    font-family: inherit;
-    resize: vertical;
-    min-height: 100px;
-    background: #f8fafc;
-    transition: all 0.2s ease;
+  width: 100%;
+  padding: 16px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  font-size: 16px;
+  font-family: inherit;
+  resize: vertical;
+  min-height: 100px;
+  background: #f8fafc;
+  transition: all 0.2s ease;
 }
 
 .mood-textarea textarea:focus {
-    outline: none;
-    border-color: #6366f1;
-    background: white;
+  outline: none;
+  border-color: #6366f1;
+  background: white;
 }
 
 .mood-textarea textarea::placeholder {
-    color: #94a3b8;
+  color: #94a3b8;
 }
 
 .color-association {
-    margin-bottom: 32px;
+  margin-bottom: 32px;
 }
 
 .color-association h3 {
-    font-size: 18px;
-    font-weight: 600;
-    color: #1e293b;
-    margin-bottom: 16px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 16px;
 }
 
 .color-selector {
-    display: flex;
-    gap: 12px;
-    justify-content: space-between;
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
 }
 
 .color-option {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border: 3px solid transparent;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 3px solid transparent;
 }
 
 .color-option:hover {
-    transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 .color-option.selected {
-    border-color: #1e293b;
-    transform: scale(1.1);
+  border-color: #1e293b;
+  transform: scale(1.1);
 }
 
 .mood-save-btn {
-    width: 100%;
-    padding: 16px;
-    background: linear-gradient(135deg, #a855f7 0%, #8b5cf6 100%);
-    color: white;
-    border: none;
-    border-radius: 16px;
-    font-size: 18px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(135deg, #a855f7 0%, #8b5cf6 100%);
+  color: white;
+  border: none;
+  border-radius: 16px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .mood-save-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(168, 85, 247, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(168, 85, 247, 0.4);
 }
 
 /* Emotions View Styles */
 .emotions-section {
-    margin-bottom: 32px;
+  margin-bottom: 32px;
 }
 
 .emotions-section h3 {
-    font-size: 18px;
-    font-weight: 600;
-    color: #1e293b;
-    margin-bottom: 16px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 16px;
 }
 
 .emotions-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 12px;
-    margin-bottom: 24px;
-    width: 100%;
-    box-sizing: border-box;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  margin-bottom: 24px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .emotion-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 12px 8px;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border: 2px solid transparent;
-    background: #f8fafc;
-    min-width: 0;
-    box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px 8px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  background: #f8fafc;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .emotion-item:hover {
-    background: #e2e8f0;
-    transform: translateY(-2px);
+  background: #e2e8f0;
+  transform: translateY(-2px);
 }
 
 .emotion-item.selected {
-    background: #eef2ff;
-    border-color: #6366f1;
-    transform: translateY(-2px);
+  background: #eef2ff;
+  border-color: #6366f1;
+  transform: translateY(-2px);
 }
 
 .emotion-emoji {
-    font-size: 24px;
-    margin-bottom: 4px;
+  font-size: 24px;
+  margin-bottom: 4px;
 }
 
 .emotion-item span {
-    font-size: 10px;
-    font-weight: 500;
-    color: #475569;
-    text-align: center;
-    line-height: 1.2;
-    word-break: break-word;
-    overflow-wrap: break-word;
+  font-size: 10px;
+  font-weight: 500;
+  color: #475569;
+  text-align: center;
+  line-height: 1.2;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .triggers-section h3 {
-    font-size: 18px;
-    font-weight: 600;
-    color: #1e293b;
-    margin-bottom: 16px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 16px;
 }
 
 .triggers-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 12px;
-    margin-bottom: 32px;
-    width: 100%;
-    box-sizing: border-box;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  margin-bottom: 32px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .trigger-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 12px 8px;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border: 2px solid transparent;
-    background: #f8fafc;
-    min-width: 0;
-    box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px 8px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  background: #f8fafc;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .trigger-item:hover {
-    background: #e2e8f0;
-    transform: translateY(-2px);
+  background: #e2e8f0;
+  transform: translateY(-2px);
 }
 
 .trigger-item.selected {
-    background: #eef2ff;
-    border-color: #6366f1;
-    transform: translateY(-2px);
+  background: #eef2ff;
+  border-color: #6366f1;
+  transform: translateY(-2px);
 }
 
 .trigger-icon {
-    font-size: 20px;
-    margin-bottom: 4px;
+  font-size: 20px;
+  margin-bottom: 4px;
 }
 
 .trigger-item span {
-    font-size: 10px;
-    font-weight: 500;
-    color: #475569;
-    text-align: center;
-    line-height: 1.2;
-    word-break: break-word;
-    overflow-wrap: break-word;
+  font-size: 10px;
+  font-weight: 500;
+  color: #475569;
+  text-align: center;
+  line-height: 1.2;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 /* Responsive adjustments for popup */
 @media (max-width: 480px) {
-    .mood-popup {
-        max-width: 100%;
-        margin: 0 8px;
-        width: calc(100% - 16px);
-    }
-    
-    .emotions-grid,
-    .triggers-grid {
-        grid-template-columns: repeat(4, 1fr);
-        gap: 8px;
-    }
-    
-    .emotion-item,
-    .trigger-item {
-        padding: 8px 4px;
-    }
-    
-    .emotion-item span,
-    .trigger-item span {
-        font-size: 9px;
-    }
-    
-    .mood-emoji-selector {
-        gap: 8px;
-    }
-    
-    .mood-emoji {
-        width: 48px;
-        height: 48px;
-        font-size: 24px;
-    }
-    
-    .color-selector {
-        gap: 8px;
-    }
-    
-    .color-option {
-        width: 40px;
-        height: 40px;
-    }
+  .mood-popup {
+    max-width: 100%;
+    margin: 0 8px;
+    width: calc(100% - 16px);
+  }
+
+  .emotions-grid,
+  .triggers-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+
+  .emotion-item,
+  .trigger-item {
+    padding: 8px 4px;
+  }
+
+  .emotion-item span,
+  .trigger-item span {
+    font-size: 9px;
+  }
+
+  .mood-emoji-selector {
+    gap: 8px;
+  }
+
+  .mood-emoji {
+    width: 48px;
+    height: 48px;
+    font-size: 24px;
+  }
+
+  .color-selector {
+    gap: 8px;
+  }
+
+  .color-option {
+    width: 40px;
+    height: 40px;
+  }
 }
 
 @media (max-width: 360px) {
-    .emotions-grid,
-    .triggers-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 6px;
-    }
-    
-    .emotion-item,
-    .trigger-item {
-        padding: 6px 2px;
-    }
-    
-    .emotion-emoji,
-    .trigger-icon {
-        font-size: 18px;
-    }
-    
-    .emotion-item span,
-    .trigger-item span {
-        font-size: 8px;
-    }
+  .emotions-grid,
+  .triggers-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+  }
+
+  .emotion-item,
+  .trigger-item {
+    padding: 6px 2px;
+  }
+
+  .emotion-emoji,
+  .trigger-icon {
+    font-size: 18px;
+  }
+
+  .emotion-item span,
+  .trigger-item span {
+    font-size: 8px;
+  }
 }
 
 /* Meditation Popup Styles */
 .meditation-popup-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 1000;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
 }
 
 .meditation-popup-overlay.active {
-    opacity: 1;
-    visibility: visible;
+  opacity: 1;
+  visibility: visible;
 }
 
 .meditation-popup {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%) translateY(100%);
-    width: 100%;
-    max-width: 414px;
-    background: white;
-    border-radius: 24px 24px 0 0;
-    max-height: 90vh;
-    overflow-y: auto;
-    overflow-x: hidden;
-    transition: transform 0.3s ease;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) translateY(100%);
+  width: 100%;
+  max-width: 414px;
+  background: white;
+  border-radius: 24px 24px 0 0;
+  max-height: 90vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  transition: transform 0.3s ease;
 }
 
 .meditation-popup-overlay.active .meditation-popup {
-    transform: translateX(-50%) translateY(0);
+  transform: translateX(-50%) translateY(0);
 }
 
 .meditation-popup-header {
-    padding: 16px 24px 0;
-    display: flex;
-    justify-content: flex-end;
-    position: sticky;
-    top: 0;
-    background: white;
-    z-index: 10;
+  padding: 16px 24px 0;
+  display: flex;
+  justify-content: flex-end;
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 10;
 }
 
 .meditation-popup-close {
-    background: #f1f5f9;
-    border: none;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-    color: #64748b;
-    cursor: pointer;
-    transition: all 0.2s ease;
+  background: #f1f5f9;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .meditation-popup-close:hover {
-    background: #e2e8f0;
-    transform: scale(1.1);
+  background: #e2e8f0;
+  transform: scale(1.1);
 }
 
 .meditation-popup-content {
-    padding: 0 24px 32px;
+  padding: 0 24px 32px;
 }
 
 .meditation-popup-content h1 {
-    font-size: 32px;
-    font-weight: 600;
-    color: #1e293b;
-    margin-bottom: 16px;
+  font-size: 32px;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 16px;
 }
 
 .meditation-description {
-    font-size: 16px;
-    color: #64748b;
-    line-height: 1.6;
-    margin-bottom: 32px;
+  font-size: 16px;
+  color: #64748b;
+  line-height: 1.6;
+  margin-bottom: 32px;
 }
 
 .meditation-duration-section {
-    margin-bottom: 32px;
+  margin-bottom: 32px;
 }
 
 .meditation-duration-section h3 {
-    font-size: 18px;
-    font-weight: 600;
-    color: #1e293b;
-    margin-bottom: 16px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 16px;
 }
 
 .duration-options {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
 .duration-btn {
-    padding: 12px 20px;
-    border: 2px solid #e2e8f0;
-    background: #f8fafc;
-    border-radius: 24px;
-    font-size: 16px;
-    font-weight: 500;
-    color: #475569;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    flex: 1;
-    min-width: 70px;
+  padding: 12px 20px;
+  border: 2px solid #e2e8f0;
+  background: #f8fafc;
+  border-radius: 24px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex: 1;
+  min-width: 70px;
 }
 
 .duration-btn:hover {
-    border-color: #a855f7;
-    background: #faf5ff;
-    transform: translateY(-2px);
+  border-color: #a855f7;
+  background: #faf5ff;
+  transform: translateY(-2px);
 }
 
 .duration-btn.selected {
-    border-color: #a855f7;
-    background: #a855f7;
-    color: white;
-    transform: translateY(-2px);
+  border-color: #a855f7;
+  background: #a855f7;
+  color: white;
+  transform: translateY(-2px);
 }
 
 .meditation-sound-section h3 {
-    font-size: 18px;
-    font-weight: 600;
-    color: #1e293b;
-    margin-bottom: 16px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 16px;
 }
 
 .sound-options {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 16px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
 }
 
 .sound-option {
-    cursor: pointer;
-    transition: all 0.3s ease;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .sound-option:first-child {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 16px;
-    border: 2px solid #e2e8f0;
-    border-radius: 12px;
-    background: #f8fafc;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  background: #f8fafc;
 }
 
 .sound-option:first-child:hover {
-    border-color: #a855f7;
-    background: #faf5ff;
+  border-color: #a855f7;
+  background: #faf5ff;
 }
 
 .sound-option.selected:first-child {
-    border-color: #a855f7;
-    background: #faf5ff;
+  border-color: #a855f7;
+  background: #faf5ff;
 }
 
 .sound-card {
-    position: relative;
-    border-radius: 16px;
-    overflow: hidden;
-    height: 120px;
-    border: 3px solid transparent;
-    transition: all 0.3s ease;
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  height: 120px;
+  border: 3px solid transparent;
+  transition: all 0.3s ease;
 }
 
 .sound-option.selected .sound-card {
-    border-color: #a855f7;
-    transform: scale(1.02);
+  border-color: #a855f7;
+  transform: scale(1.02);
 }
 
 .sound-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .sound-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.6));
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 16px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.2),
+    rgba(0, 0, 0, 0.6)
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 16px;
 }
 
 .sound-radio {
-    position: relative;
-    align-self: flex-end;
+  position: relative;
+  align-self: flex-end;
 }
 
 .sound-radio input[type="radio"] {
-    appearance: none;
-    width: 20px;
-    height: 20px;
-    border: 2px solid white;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.2);
-    cursor: pointer;
-    transition: all 0.3s ease;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid white;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .sound-radio input[type="radio"]:checked {
-    background: #a855f7;
-    border-color: #a855f7;
+  background: #a855f7;
+  border-color: #a855f7;
 }
 
 .sound-radio input[type="radio"]:checked::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: white;
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: white;
 }
 
 .sound-radio label {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
 }
 
 .sound-title {
-    color: white;
-    font-size: 18px;
-    font-weight: 600;
-    align-self: flex-start;
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  align-self: flex-start;
 }
 
 .sound-label {
-    font-size: 16px;
-    font-weight: 500;
-    color: #475569;
+  font-size: 16px;
+  font-weight: 500;
+  color: #475569;
 }
 
 .meditation-start-btn {
-    width: 100%;
-    padding: 16px;
-    background: linear-gradient(135deg, #a855f7 0%, #8b5cf6 100%);
-    color: white;
-    border: none;
-    border-radius: 16px;
-    font-size: 18px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin-top: 32px;
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(135deg, #a855f7 0%, #8b5cf6 100%);
+  color: white;
+  border: none;
+  border-radius: 16px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 32px;
 }
 
 .meditation-start-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(168, 85, 247, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(168, 85, 247, 0.4);
 }
 
 /* Responsive adjustments for meditation popup */
 @media (max-width: 480px) {
-    .duration-options {
-        gap: 8px;
-    }
-    
-    .duration-btn {
-        padding: 10px 16px;
-        font-size: 14px;
-        min-width: 60px;
-    }
-    
-    .sound-card {
-        height: 100px;
-    }
-    
-    .meditation-popup-content h1 {
-        font-size: 28px;
-    }
-    }
+  .duration-options {
+    gap: 8px;
+  }
+
+  .duration-btn {
+    padding: 10px 16px;
+    font-size: 14px;
+    min-width: 60px;
+  }
+
+  .sound-card {
+    height: 100px;
+  }
+
+  .meditation-popup-content h1 {
+    font-size: 28px;
+  }
+}

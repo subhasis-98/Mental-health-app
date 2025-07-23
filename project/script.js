@@ -1,124 +1,143 @@
 class WellnessApp {
-    constructor() {
-        this.selectedMood = 'very-happy';
-        this.selectedDay = 22;
-        this.activities = {
-            'save-mood': false,
-            'how-feel': false,
-            'record-sleep': false,
-            'notifications': false
-        };
-        
-        this.init();
+  constructor() {
+    this.selectedMood = "very-happy";
+    this.selectedDay = 22;
+    this.activities = {
+      "save-mood": false,
+      "how-feel": false,
+      "record-sleep": false,
+      notifications: false,
+    };
+
+    this.init();
+  }
+
+  init() {
+    this.bindEventListeners();
+    this.updateGreeting();
+    this.animateElements();
+  }
+
+  bindEventListeners() {
+    // Mood selector
+    document.querySelectorAll(".mood-option").forEach((option) => {
+      option.addEventListener("click", (e) => this.selectMood(e.target));
+    });
+
+    // Calendar days
+    document.querySelectorAll(".day-item").forEach((day) => {
+      day.addEventListener("click", (e) => this.selectDay(e.currentTarget));
+    });
+
+    // Support cards
+    document.querySelectorAll(".support-card").forEach((card) => {
+      card.addEventListener("click", (e) =>
+        this.handleSupportAction(e.currentTarget)
+      );
+    });
+
+    // Journal cards
+    document.querySelectorAll(".journal-card").forEach((card) => {
+      card.addEventListener("click", (e) =>
+        this.handleJournalAction(e.currentTarget)
+      );
+    });
+
+    // Activity items
+    document.querySelectorAll(".activity-item").forEach((item) => {
+      item.addEventListener("click", (e) =>
+        this.handleActivityAction(e.currentTarget)
+      );
+    });
+
+    // Bottom navigation
+    document.querySelectorAll(".nav-item").forEach((nav) => {
+      nav.addEventListener("click", (e) =>
+        this.handleNavigation(e.currentTarget)
+      );
+    });
+
+    // Add touch feedback for mobile
+    this.addTouchFeedback();
+  }
+
+  selectMood(moodElement) {
+    // Remove previous selection
+    document.querySelectorAll(".mood-option").forEach((opt) => {
+      opt.classList.remove("selected");
+    });
+
+    // Add selection to clicked mood
+    moodElement.classList.add("selected");
+    this.selectedMood = moodElement.dataset.mood;
+
+    // Add ripple effect
+    this.createRippleEffect(moodElement);
+
+    // Show feedback
+    this.showToast(`Mood "${this.selectedMood}" recorded!`);
+  }
+
+  selectDay(dayElement) {
+    // Remove previous selection
+    document.querySelectorAll(".day-item").forEach((day) => {
+      day.classList.remove("active");
+    });
+
+    // Add selection to clicked day
+    dayElement.classList.add("active");
+    this.selectedDay = parseInt(
+      dayElement.querySelector(".day-number").textContent
+    );
+
+    // Add ripple effect
+    this.createRippleEffect(dayElement);
+  }
+
+  handleSupportAction(card) {
+    const action = card.dataset.action;
+    this.createRippleEffect(card);
+
+    switch (action) {
+      case "coping-cards":
+        this.showModal(
+          "Coping Cards",
+          "Access your personalized coping strategies and techniques."
+        );
+        break;
+      case "emergency-help":
+        this.showModal(
+          "Emergency Help",
+          "Immediate support resources and crisis helplines are available 24/7."
+        );
+        break;
     }
+  }
 
-    init() {
-        this.bindEventListeners();
-        this.updateGreeting();
-        this.animateElements();
+  handleJournalAction(card) {
+    const action = card.dataset.action;
+    this.createRippleEffect(card);
+
+    switch (action) {
+      case "mood-record":
+        this.showMoodRecordPopup();
+        break;
+      case "diary-record":
+        this.showModal(
+          "Diary Record",
+          "Write about your day and capture important moments."
+        );
+        break;
+      case "meditation":
+        this.showMeditationPopup();
+        break;
     }
+  }
 
-    bindEventListeners() {
-        // Mood selector
-        document.querySelectorAll('.mood-option').forEach(option => {
-            option.addEventListener('click', (e) => this.selectMood(e.target));
-        });
-
-        // Calendar days
-        document.querySelectorAll('.day-item').forEach(day => {
-            day.addEventListener('click', (e) => this.selectDay(e.currentTarget));
-        });
-
-        // Support cards
-        document.querySelectorAll('.support-card').forEach(card => {
-            card.addEventListener('click', (e) => this.handleSupportAction(e.currentTarget));
-        });
-
-        // Journal cards
-        document.querySelectorAll('.journal-card').forEach(card => {
-            card.addEventListener('click', (e) => this.handleJournalAction(e.currentTarget));
-        });
-
-        // Activity items
-        document.querySelectorAll('.activity-item').forEach(item => {
-            item.addEventListener('click', (e) => this.handleActivityAction(e.currentTarget));
-        });
-
-        // Bottom navigation
-        document.querySelectorAll('.nav-item').forEach(nav => {
-            nav.addEventListener('click', (e) => this.handleNavigation(e.currentTarget));
-        });
-
-        // Add touch feedback for mobile
-        this.addTouchFeedback();
-    }
-
-    selectMood(moodElement) {
-        // Remove previous selection
-        document.querySelectorAll('.mood-option').forEach(opt => {
-            opt.classList.remove('selected');
-        });
-
-        // Add selection to clicked mood
-        moodElement.classList.add('selected');
-        this.selectedMood = moodElement.dataset.mood;
-
-        // Add ripple effect
-        this.createRippleEffect(moodElement);
-
-        // Show feedback
-        this.showToast(`Mood "${this.selectedMood}" recorded!`);
-    }
-
-    selectDay(dayElement) {
-        // Remove previous selection
-        document.querySelectorAll('.day-item').forEach(day => {
-            day.classList.remove('active');
-        });
-
-        // Add selection to clicked day
-        dayElement.classList.add('active');
-        this.selectedDay = parseInt(dayElement.querySelector('.day-number').textContent);
-
-        // Add ripple effect
-        this.createRippleEffect(dayElement);
-    }
-
-    handleSupportAction(card) {
-        const action = card.dataset.action;
-        this.createRippleEffect(card);
-
-        switch(action) {
-            case 'coping-cards':
-                this.showModal('Coping Cards', 'Access your personalized coping strategies and techniques.');
-                break;
-            case 'emergency-help':
-                this.showModal('Emergency Help', 'Immediate support resources and crisis helplines are available 24/7.');
-                break;
-        }
-    }
-
-    handleJournalAction(card) {
-        const action = card.dataset.action;
-        this.createRippleEffect(card);
-
-        switch(action) {
-            case 'mood-record':
-                this.showMoodRecordPopup();
-                break;
-            case 'diary-record':
-                this.showModal('Diary Record', 'Write about your day and capture important moments.');
-                break;
-            case 'meditation':
-                this.showMeditationPopup();
-                break;
-        }
-    }
-
-    showMoodRecordPopup() {
-        const popup = document.createElement('div');
-        popup.className = 'mood-popup-overlay';
-        popup.innerHTML = `
+  showMoodRecordPopup() {
+    const popup = document.createElement("div");
+    popup.className = "mood-popup-overlay";
+    popup.innerHTML = `
             <div class="mood-popup">
                 <div class="mood-popup-header">
                     <button class="mood-popup-close">&times;</button>
@@ -388,99 +407,103 @@ class WellnessApp {
             </div>
         `;
 
-        document.body.appendChild(popup);
-        
-        // Add event listeners for the popup
-        this.bindMoodPopupEvents(popup);
-        
-        // Animate popup in
-        setTimeout(() => {
-            popup.classList.add('active');
-        }, 10);
-    }
+    document.body.appendChild(popup);
 
-    bindMoodPopupEvents(popup) {
-        // Close popup
-        popup.querySelector('.mood-popup-close').addEventListener('click', () => {
-            this.closeMoodPopup(popup);
-        });
-        
-        popup.addEventListener('click', (e) => {
-            if (e.target === popup) {
-                this.closeMoodPopup(popup);
-            }
-        });
+    // Add event listeners for the popup
+    this.bindMoodPopupEvents(popup);
 
-        // Tab switching
-        popup.querySelectorAll('.mood-tab').forEach(tab => {
-            tab.addEventListener('click', (e) => {
-                this.switchMoodTab(e.target.dataset.tab, popup);
-            });
-        });
+    // Animate popup in
+    setTimeout(() => {
+      popup.classList.add("active");
+    }, 10);
+  }
 
-        // Mood emoji selection
-        popup.querySelectorAll('.mood-emoji').forEach(emoji => {
-            emoji.addEventListener('click', (e) => {
-                popup.querySelectorAll('.mood-emoji').forEach(em => em.classList.remove('selected'));
-                e.target.classList.add('selected');
-            });
-        });
+  bindMoodPopupEvents(popup) {
+    // Close popup
+    popup.querySelector(".mood-popup-close").addEventListener("click", () => {
+      this.closeMoodPopup(popup);
+    });
 
-        // Color selection
-        popup.querySelectorAll('.color-option').forEach(color => {
-            color.addEventListener('click', (e) => {
-                popup.querySelectorAll('.color-option').forEach(c => c.classList.remove('selected'));
-                e.target.classList.add('selected');
-            });
-        });
+    popup.addEventListener("click", (e) => {
+      if (e.target === popup) {
+        this.closeMoodPopup(popup);
+      }
+    });
 
-        // Emotion selection
-        popup.querySelectorAll('.emotion-item').forEach(emotion => {
-            emotion.addEventListener('click', (e) => {
-                e.currentTarget.classList.toggle('selected');
-            });
-        });
+    // Tab switching
+    popup.querySelectorAll(".mood-tab").forEach((tab) => {
+      tab.addEventListener("click", (e) => {
+        this.switchMoodTab(e.target.dataset.tab, popup);
+      });
+    });
 
-        // Trigger selection
-        popup.querySelectorAll('.trigger-item').forEach(trigger => {
-            trigger.addEventListener('click', (e) => {
-                e.currentTarget.classList.toggle('selected');
-            });
-        });
+    // Mood emoji selection
+    popup.querySelectorAll(".mood-emoji").forEach((emoji) => {
+      emoji.addEventListener("click", (e) => {
+        popup
+          .querySelectorAll(".mood-emoji")
+          .forEach((em) => em.classList.remove("selected"));
+        e.target.classList.add("selected");
+      });
+    });
 
-        // Save button
-        popup.querySelectorAll('.mood-save-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                this.saveMoodRecord(popup);
-            });
-        });
-    }
+    // Color selection
+    popup.querySelectorAll(".color-option").forEach((color) => {
+      color.addEventListener("click", (e) => {
+        popup
+          .querySelectorAll(".color-option")
+          .forEach((c) => c.classList.remove("selected"));
+        e.target.classList.add("selected");
+      });
+    });
 
-    switchMoodTab(tabName, popup) {
-        // Update tab buttons
-        popup.querySelectorAll('.mood-tab').forEach(tab => {
-            tab.classList.remove('active');
-        });
-        popup.querySelector(`[data-tab="${tabName}"]`).classList.add('active');
+    // Emotion selection
+    popup.querySelectorAll(".emotion-item").forEach((emotion) => {
+      emotion.addEventListener("click", (e) => {
+        e.currentTarget.classList.toggle("selected");
+      });
+    });
 
-        // Update views
-        popup.querySelectorAll('.mood-view').forEach(view => {
-            view.classList.remove('active');
-        });
-        popup.querySelector(`#${tabName}-view`).classList.add('active');
-    }
+    // Trigger selection
+    popup.querySelectorAll(".trigger-item").forEach((trigger) => {
+      trigger.addEventListener("click", (e) => {
+        e.currentTarget.classList.toggle("selected");
+      });
+    });
 
-    closeMoodPopup(popup) {
-        popup.classList.remove('active');
-        setTimeout(() => {
-            popup.remove();
-        }, 300);
-    }
+    // Save button
+    popup.querySelectorAll(".mood-save-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        this.saveMoodRecord(popup);
+      });
+    });
+  }
 
-    showMeditationPopup() {
-        const popup = document.createElement('div');
-        popup.className = 'meditation-popup-overlay';
-        popup.innerHTML = `
+  switchMoodTab(tabName, popup) {
+    // Update tab buttons
+    popup.querySelectorAll(".mood-tab").forEach((tab) => {
+      tab.classList.remove("active");
+    });
+    popup.querySelector(`[data-tab="${tabName}"]`).classList.add("active");
+
+    // Update views
+    popup.querySelectorAll(".mood-view").forEach((view) => {
+      view.classList.remove("active");
+    });
+    popup.querySelector(`#${tabName}-view`).classList.add("active");
+  }
+
+  closeMoodPopup(popup) {
+    popup.classList.remove("active");
+    setTimeout(() => {
+      popup.remove();
+    }, 300);
+  }
+
+  showMeditationPopup() {
+    const popup = document.createElement("div");
+    popup.className = "meditation-popup-overlay";
+    popup.innerHTML = `
             <div class="meditation-popup">
                 <div class="meditation-popup-header">
                     <button class="meditation-popup-close">&times;</button>
@@ -560,181 +583,214 @@ class WellnessApp {
             </div>
         `;
 
-        document.body.appendChild(popup);
-        
-        // Add event listeners for the popup
-        this.bindMeditationPopupEvents(popup);
-        
-        // Animate popup in
-        setTimeout(() => {
-            popup.classList.add('active');
-        }, 10);
-    }
+    document.body.appendChild(popup);
 
-    bindMeditationPopupEvents(popup) {
-        // Close popup
-        popup.querySelector('.meditation-popup-close').addEventListener('click', () => {
-            this.closeMeditationPopup(popup);
+    // Add event listeners for the popup
+    this.bindMeditationPopupEvents(popup);
+
+    // Animate popup in
+    setTimeout(() => {
+      popup.classList.add("active");
+    }, 10);
+  }
+
+  bindMeditationPopupEvents(popup) {
+    // Close popup
+    popup
+      .querySelector(".meditation-popup-close")
+      .addEventListener("click", () => {
+        this.closeMeditationPopup(popup);
+      });
+
+    popup.addEventListener("click", (e) => {
+      if (e.target === popup) {
+        this.closeMeditationPopup(popup);
+      }
+    });
+
+    // Duration selection
+    popup.querySelectorAll(".duration-btn").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        popup
+          .querySelectorAll(".duration-btn")
+          .forEach((b) => b.classList.remove("selected"));
+        e.target.classList.add("selected");
+      });
+    });
+
+    // Sound selection
+    popup.querySelectorAll(".sound-option").forEach((option) => {
+      option.addEventListener("click", (e) => {
+        const radio = option.querySelector('input[type="radio"]');
+        radio.checked = true;
+
+        // Update visual selection
+        popup.querySelectorAll(".sound-option").forEach((opt) => {
+          opt.classList.remove("selected");
         });
-        
-        popup.addEventListener('click', (e) => {
-            if (e.target === popup) {
-                this.closeMeditationPopup(popup);
-            }
-        });
+        option.classList.add("selected");
+      });
+    });
 
-        // Duration selection
-        popup.querySelectorAll('.duration-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                popup.querySelectorAll('.duration-btn').forEach(b => b.classList.remove('selected'));
-                e.target.classList.add('selected');
-            });
-        });
+    // Start meditation button
+    popup
+      .querySelector(".meditation-start-btn")
+      .addEventListener("click", () => {
+        const selectedDuration = popup.querySelector(".duration-btn.selected");
+        const selectedSound = popup.querySelector(
+          'input[name="meditation-sound"]:checked'
+        );
 
-        // Sound selection
-        popup.querySelectorAll('.sound-option').forEach(option => {
-            option.addEventListener('click', (e) => {
-                const radio = option.querySelector('input[type="radio"]');
-                radio.checked = true;
-                
-                // Update visual selection
-                popup.querySelectorAll('.sound-option').forEach(opt => {
-                    opt.classList.remove('selected');
-                });
-                option.classList.add('selected');
-            });
-        });
-
-        // Start meditation button
-        popup.querySelector('.meditation-start-btn').addEventListener('click', () => {
-            const selectedDuration = popup.querySelector('.duration-btn.selected');
-            const selectedSound = popup.querySelector('input[name="meditation-sound"]:checked');
-            
-            if (selectedDuration && selectedSound) {
-                const duration = selectedDuration.dataset.duration;
-                const sound = selectedSound.value;
-                this.startMeditation(duration, sound);
-                this.closeMeditationPopup(popup);
-            } else {
-                this.showToast('Please select duration and sound');
-            }
-        });
-    }
-
-    closeMeditationPopup(popup) {
-        popup.classList.remove('active');
-        setTimeout(() => {
-            popup.remove();
-        }, 300);
-    }
-
-    startMeditation(duration, sound) {
-        this.showToast(`Starting ${duration} minute meditation with ${sound === 'none' ? 'no sound' : sound + ' sounds'}`);
-        // Here you would implement the actual meditation timer and sound playback
-    }
-
-    saveMoodRecord(popup) {
-        const activeTab = popup.querySelector('.mood-tab.active').dataset.tab;
-        
-        if (activeTab === 'mood') {
-            const selectedMood = popup.querySelector('.mood-emoji.selected');
-            const selectedColor = popup.querySelector('.color-option.selected');
-            const moodText = popup.querySelector('textarea').value;
-            
-            if (selectedMood) {
-                this.showToast('Mood record saved successfully!');
-                this.closeMoodPopup(popup);
-            } else {
-                this.showToast('Please select a mood first');
-            }
+        if (selectedDuration && selectedSound) {
+          const duration = selectedDuration.dataset.duration;
+          const sound = selectedSound.value;
+          this.startMeditation(duration, sound);
+          this.closeMeditationPopup(popup);
         } else {
-            const selectedEmotions = popup.querySelectorAll('.emotion-item.selected');
-            const selectedTriggers = popup.querySelectorAll('.trigger-item.selected');
-            
-            if (selectedEmotions.length > 0) {
-                this.showToast(`Emotions record saved! ${selectedEmotions.length} emotions and ${selectedTriggers.length} triggers recorded.`);
-                this.closeMoodPopup(popup);
-            } else {
-                this.showToast('Please select at least one emotion');
-            }
+          this.showToast("Please select duration and sound");
         }
+      });
+  }
+
+  closeMeditationPopup(popup) {
+    popup.classList.remove("active");
+    setTimeout(() => {
+      popup.remove();
+    }, 300);
+  }
+
+  startMeditation(duration, sound) {
+    this.showToast(
+      `Starting ${duration} minute meditation with ${
+        sound === "none" ? "no sound" : sound + " sounds"
+      }`
+    );
+    // Here you would implement the actual meditation timer and sound playback
+  }
+
+  saveMoodRecord(popup) {
+    const activeTab = popup.querySelector(".mood-tab.active").dataset.tab;
+
+    if (activeTab === "mood") {
+      const selectedMood = popup.querySelector(".mood-emoji.selected");
+      const selectedColor = popup.querySelector(".color-option.selected");
+      const moodText = popup.querySelector("textarea").value;
+
+      if (selectedMood) {
+        this.showToast("Mood record saved successfully!");
+        this.closeMoodPopup(popup);
+      } else {
+        this.showToast("Please select a mood first");
+      }
+    } else {
+      const selectedEmotions = popup.querySelectorAll(".emotion-item.selected");
+      const selectedTriggers = popup.querySelectorAll(".trigger-item.selected");
+
+      if (selectedEmotions.length > 0) {
+        this.showToast(
+          `Emotions record saved! ${selectedEmotions.length} emotions and ${selectedTriggers.length} triggers recorded.`
+        );
+        this.closeMoodPopup(popup);
+      } else {
+        this.showToast("Please select at least one emotion");
+      }
+    }
+  }
+
+  handleActivityAction(item) {
+    const action = item.dataset.action;
+    this.createRippleEffect(item);
+
+    // Toggle activity completion
+    this.activities[action] = !this.activities[action];
+
+    if (this.activities[action]) {
+      item.style.opacity = "0.7";
+      item.querySelector(".activity-arrow").textContent = "✓";
+      this.showToast("Redirecting");
+    } else {
+      item.style.opacity = "1";
+      item.querySelector(".activity-arrow").textContent = "→";
     }
 
-    handleActivityAction(item) {
-        const action = item.dataset.action;
-        this.createRippleEffect(item);
+    switch (action) {
+      // case 'save-mood':
+      //     this.showModal('Save Mood', 'Your current mood has been saved to your journal.');
+      //     break;
 
-        // Toggle activity completion
-        this.activities[action] = !this.activities[action];
-        
-        if (this.activities[action]) {
-            item.style.opacity = '0.7';
-            item.querySelector('.activity-arrow').textContent = '✓';
-            this.showToast('Activity completed!');
-        } else {
-            item.style.opacity = '1';
-            item.querySelector('.activity-arrow').textContent = '→';
-        }
+      case "save-mood":
+        this.showModal(
+          "Check Your Stress Level",
+          "Redirecting you to a quick stress check..."
+        );
 
-        switch(action) {
-            case 'save-mood':
-                this.showModal('Save Mood', 'Your current mood has been saved to your journal.');
-                break;
-            case 'how-feel':
-                this.showModal('How do you feel?', 'Add detailed emotions and feelings to your record.');
-                break;
-            case 'record-sleep':
-                this.showModal('Record Sleep', 'Log your sleep quality and duration from last night.');
-                break;
-            case 'notifications':
-                this.requestNotificationPermission();
-                break;
-        }
-    }
-
-    handleNavigation(navItem) {
-        // Remove previous active state
-        document.querySelectorAll('.nav-item').forEach(nav => {
-            nav.classList.remove('active');
-        });
-
-        // Add active state to clicked nav
-        navItem.classList.add('active');
-        this.createRippleEffect(navItem);
-
-        const section = navItem.dataset.section;
-        this.showToast(`Navigating to ${section}...`);
-    }
-
-    createRippleEffect(element) {
-        const ripple = document.createElement('div');
-        ripple.classList.add('ripple');
-        
-        const rect = element.getBoundingClientRect();
-        const size = Math.max(rect.width, rect.height);
-        
-        ripple.style.width = ripple.style.height = size + 'px';
-        ripple.style.position = 'absolute';
-        ripple.style.borderRadius = '50%';
-        ripple.style.background = 'rgba(255, 255, 255, 0.6)';
-        ripple.style.transform = 'scale(0)';
-        ripple.style.animation = 'ripple 0.6s linear';
-        ripple.style.pointerEvents = 'none';
-        
-        element.style.position = 'relative';
-        element.style.overflow = 'hidden';
-        element.appendChild(ripple);
-
+        // Redirect after 1.5 seconds (1500 ms)
         setTimeout(() => {
-            ripple.remove();
-        }, 600);
-    }
+          window.location.href = "analysis/index.html"; // Change to your desired page
+        }, 2000);
+        break;
 
-    showModal(title, message) {
-        // Create modal overlay
-        const overlay = document.createElement('div');
-        overlay.className = 'modal-overlay';
-        overlay.innerHTML = `
+      case "how-feel":
+        this.showModal(
+          "How do you feel?",
+          "Add detailed emotions and feelings to your record."
+        );
+        break;
+      case "record-sleep":
+        this.showModal(
+          "Record Sleep",
+          "Log your sleep quality and duration from last night."
+        );
+        break;
+      case "notifications":
+        this.requestNotificationPermission();
+        break;
+    }
+  }
+
+  handleNavigation(navItem) {
+    // Remove previous active state
+    document.querySelectorAll(".nav-item").forEach((nav) => {
+      nav.classList.remove("active");
+    });
+
+    // Add active state to clicked nav
+    navItem.classList.add("active");
+    this.createRippleEffect(navItem);
+
+    const section = navItem.dataset.section;
+    this.showToast(`Navigating to ${section}...`);
+  }
+
+  createRippleEffect(element) {
+    const ripple = document.createElement("div");
+    ripple.classList.add("ripple");
+
+    const rect = element.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+
+    ripple.style.width = ripple.style.height = size + "px";
+    ripple.style.position = "absolute";
+    ripple.style.borderRadius = "50%";
+    ripple.style.background = "rgba(255, 255, 255, 0.6)";
+    ripple.style.transform = "scale(0)";
+    ripple.style.animation = "ripple 0.6s linear";
+    ripple.style.pointerEvents = "none";
+
+    element.style.position = "relative";
+    element.style.overflow = "hidden";
+    element.appendChild(ripple);
+
+    setTimeout(() => {
+      ripple.remove();
+    }, 600);
+  }
+
+  showModal(title, message) {
+    // Create modal overlay
+    const overlay = document.createElement("div");
+    overlay.className = "modal-overlay";
+    overlay.innerHTML = `
             <div class="modal">
                 <div class="modal-header">
                     <h3>${title}</h3>
@@ -749,13 +805,13 @@ class WellnessApp {
             </div>
         `;
 
-        document.body.appendChild(overlay);
+    document.body.appendChild(overlay);
 
-        // Add modal styles if not already present
-        if (!document.querySelector('#modal-styles')) {
-            const modalStyles = document.createElement('style');
-            modalStyles.id = 'modal-styles';
-            modalStyles.textContent = `
+    // Add modal styles if not already present
+    if (!document.querySelector("#modal-styles")) {
+      const modalStyles = document.createElement("style");
+      modalStyles.id = "modal-styles";
+      modalStyles.textContent = `
                 .modal-overlay {
                     position: fixed;
                     top: 0;
@@ -854,35 +910,35 @@ class WellnessApp {
                     }
                 }
             `;
-            document.head.appendChild(modalStyles);
-        }
-
-        // Close modal events
-        overlay.querySelector('.modal-close').addEventListener('click', () => {
-            overlay.remove();
-        });
-
-        overlay.querySelector('.btn-primary').addEventListener('click', () => {
-            overlay.remove();
-        });
-
-        overlay.addEventListener('click', (e) => {
-            if (e.target === overlay) {
-                overlay.remove();
-            }
-        });
+      document.head.appendChild(modalStyles);
     }
 
-    showToast(message) {
-        const toast = document.createElement('div');
-        toast.className = 'toast';
-        toast.textContent = message;
-        
-        // Add toast styles if not already present
-        if (!document.querySelector('#toast-styles')) {
-            const toastStyles = document.createElement('style');
-            toastStyles.id = 'toast-styles';
-            toastStyles.textContent = `
+    // Close modal events
+    overlay.querySelector(".modal-close").addEventListener("click", () => {
+      overlay.remove();
+    });
+
+    overlay.querySelector(".btn-primary").addEventListener("click", () => {
+      overlay.remove();
+    });
+
+    overlay.addEventListener("click", (e) => {
+      if (e.target === overlay) {
+        overlay.remove();
+      }
+    });
+  }
+
+  showToast(message) {
+    const toast = document.createElement("div");
+    toast.className = "toast";
+    toast.textContent = message;
+
+    // Add toast styles if not already present
+    if (!document.querySelector("#toast-styles")) {
+      const toastStyles = document.createElement("style");
+      toastStyles.id = "toast-styles";
+      toastStyles.textContent = `
                 .toast {
                     position: fixed;
                     top: 80px;
@@ -914,78 +970,82 @@ class WellnessApp {
                     }
                 }
             `;
-            document.head.appendChild(toastStyles);
-        }
-
-        document.body.appendChild(toast);
-
-        setTimeout(() => {
-            toast.remove();
-        }, 3000);
+      document.head.appendChild(toastStyles);
     }
 
-    updateGreeting() {
-        const hour = new Date().getHours();
-        const greetingElement = document.querySelector('.greeting h1');
-        
-        if (hour < 12) {
-            greetingElement.textContent = 'Good morning, subhasis';
-        } else if (hour < 18) {
-            greetingElement.textContent = 'Good afternoon, subhasis';
+    document.body.appendChild(toast);
+
+    setTimeout(() => {
+      toast.remove();
+    }, 3000);
+  }
+
+  updateGreeting() {
+    const hour = new Date().getHours();
+    const greetingElement = document.querySelector(".greeting h1");
+
+    if (hour < 12) {
+      greetingElement.textContent = "Good morning, subhasis";
+    } else if (hour < 18) {
+      greetingElement.textContent = "Good afternoon, subhasis";
+    } else {
+      greetingElement.textContent = "Good evening, subhasis";
+    }
+  }
+
+  requestNotificationPermission() {
+    if ("Notification" in window) {
+      Notification.requestPermission().then((permission) => {
+        if (permission === "granted") {
+          this.showToast("Notifications enabled!");
+          new Notification("Wellness Tracker", {
+            body: "You'll now receive daily wellness reminders!",
+            icon: "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=400",
+          });
         } else {
-            greetingElement.textContent = 'Good evening, subhasis';
+          this.showToast("Notifications permission denied");
         }
+      });
+    } else {
+      this.showToast("Notifications not supported");
     }
+  }
 
-    requestNotificationPermission() {
-        if ('Notification' in window) {
-            Notification.requestPermission().then(permission => {
-                if (permission === 'granted') {
-                    this.showToast('Notifications enabled!');
-                    new Notification('Wellness Tracker', {
-                        body: 'You\'ll now receive daily wellness reminders!',
-                        icon: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=400'
-                    });
-                } else {
-                    this.showToast('Notifications permission denied');
-                }
-            });
-        } else {
-            this.showToast('Notifications not supported');
+  animateElements() {
+    // Stagger animation for cards
+    const cards = document.querySelectorAll(
+      ".calendar-section, .quick-support, .journal-section, .activities-section, .daily-tip"
+    );
+    cards.forEach((card, index) => {
+      card.style.animationDelay = `${index * 0.1}s`;
+    });
+
+    // Animate mood options
+    document.querySelectorAll(".mood-option").forEach((option, index) => {
+      option.style.animationDelay = `${0.5 + index * 0.1}s`;
+      option.style.animation = "fadeIn 0.6s ease-out forwards";
+      option.style.opacity = "0";
+    });
+  }
+
+  addTouchFeedback() {
+    // Add haptic feedback for supported devices
+    const clickableElements = document.querySelectorAll(
+      ".mood-option, .day-item, .support-card, .journal-card, .activity-item, .nav-item"
+    );
+
+    clickableElements.forEach((element) => {
+      element.addEventListener("touchstart", () => {
+        if (navigator.vibrate) {
+          navigator.vibrate(50);
         }
-    }
-
-    animateElements() {
-        // Stagger animation for cards
-        const cards = document.querySelectorAll('.calendar-section, .quick-support, .journal-section, .activities-section, .daily-tip');
-        cards.forEach((card, index) => {
-            card.style.animationDelay = `${index * 0.1}s`;
-        });
-
-        // Animate mood options
-        document.querySelectorAll('.mood-option').forEach((option, index) => {
-            option.style.animationDelay = `${0.5 + index * 0.1}s`;
-            option.style.animation = 'fadeIn 0.6s ease-out forwards';
-            option.style.opacity = '0';
-        });
-    }
-
-    addTouchFeedback() {
-        // Add haptic feedback for supported devices
-        const clickableElements = document.querySelectorAll('.mood-option, .day-item, .support-card, .journal-card, .activity-item, .nav-item');
-        
-        clickableElements.forEach(element => {
-            element.addEventListener('touchstart', () => {
-                if (navigator.vibrate) {
-                    navigator.vibrate(50);
-                }
-            });
-        });
-    }
+      });
+    });
+  }
 }
 
 // Add ripple animation styles
-const rippleStyles = document.createElement('style');
+const rippleStyles = document.createElement("style");
 rippleStyles.textContent = `
     @keyframes ripple {
         to {
@@ -997,19 +1057,20 @@ rippleStyles.textContent = `
 document.head.appendChild(rippleStyles);
 
 // Initialize the app when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    new WellnessApp();
+document.addEventListener("DOMContentLoaded", () => {
+  new WellnessApp();
 });
 
 // Add service worker registration for PWA capabilities
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js')
-            .then(registration => {
-                console.log('SW registered: ', registration);
-            })
-            .catch(registrationError => {
-                console.log('SW registration failed: ', registrationError);
-            });
-    });
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker
+      .register("/sw.js")
+      .then((registration) => {
+        console.log("SW registered: ", registration);
+      })
+      .catch((registrationError) => {
+        console.log("SW registration failed: ", registrationError);
+      });
+  });
 }
