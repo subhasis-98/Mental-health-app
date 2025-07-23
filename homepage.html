@@ -11,6 +11,7 @@
 </head>
 
 <body>
+
     <div class="app-container">
         <!-- Header Section -->
         <header class="header">
@@ -22,18 +23,10 @@
                     <h3>Hello, <span id="loggedUserFName"></span> <span id="loggedUserLName"></span> 👋</h3>
 
                     <p>How was your sleep?</p>
-                    <a href="analysis/index.html">Measure </a>
+                    <!-- <a href="analysis/index.html">Measure </a> -->
 
                 </div>
-                <button id="logout" style="background-color: #6a5acd;
-                            color: white;
-                            border: none;
-                            padding: 0.6rem 1.2rem;
-                            font-size: 1rem;
-                            border-radius: 8px;
-                            cursor: pointer;
-                            transition: background-color 0.3s ease;
-                            margin-left:30px;">Logout</button>
+
             </div>
 
 
@@ -200,11 +193,22 @@
                 <div class="nav-icon">⏸️</div>
             </div>
             <div class="nav-item" data-section="settings">
-                <div class="nav-icon">⚙️</div>
+                <!-- <div class="nav-icon">⚙️</div> -->
+                <button id="logout" class="nav-icon" style="border: none;cursor: pointer; bacground-color:#ffffff;">⚙️</button>
+               
+                <!-- <button id="logout" style="background-color: #6a5acd;
+                                            color: white;
+                                            border: none;
+                                            padding: 0.6rem 1.2rem;
+                                            font-size: 1rem;
+                                            border-radius: 8px;
+                                            cursor: pointer;
+                                            transition: background-color 0.3s ease;
+                                            margin-left:30px;">Logout</button> -->
             </div>
         </nav>
     </div>
-    
+
 
     <script src="project/script.js"></script>
 </body>

@@ -719,15 +719,15 @@ class WellnessApp {
       //     break;
 
       case "save-mood":
-        this.showModal(
-          "Check Your Stress Level",
-          "Redirecting you to a quick stress check..."
-        );
+        // this.showModal(
+        //   "Check Your Stress Level",
+        //   "Redirecting you to a quick stress check..."
+        // );
 
         // Redirect after 1.5 seconds (1500 ms)
         setTimeout(() => {
           window.location.href = "analysis/index.html"; // Change to your desired page
-        }, 2000);
+        }, 1000);
         break;
 
       case "how-feel":
