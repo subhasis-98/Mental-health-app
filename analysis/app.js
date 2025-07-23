@@ -1,41 +1,98 @@
-//  <script>
-const questions = [
-  //   "I feel energetic during the day.",
-  //   "I am able to concentrate on tasks.",
-  //   "I enjoy spending time with others.",
-  //   "I sleep well at night.",
-  //   "I feel anxious or nervous.",
-  //   "I feel hopeless or down.",
-  //   "I get irritated easily.",
-  //   "I feel confident in myself.",
-  //   "I avoid social situations.",
-  //   "I feel overwhelmed by responsibilities.",
-  //   "I experience sudden mood changes.",
-  //   "I find it difficult to relax.",
-  //   "I feel motivated to do things.",
-  //   "I experience panic attacks.",
-  //   "I feel emotionally balanced.",
-  //   "I feel lonely even in a crowd.",
-  //   "I feel satisfied with my personal life.",
-  //   "I struggle to find joy in hobbies.",
-  //   "I get enough rest and recovery.",
-  //   "I feel like talking to someone about my feelings.",
+//
 
-  "I feel anxious or nervous.",
-  "I feel overwhelmed by responsibilities.",
-  "I get irritated easily.",
-  "I find it difficult to relax.",
-  "I experience sudden mood changes.",
-  "I sleep well at night.",
-  "I feel emotionally balanced.",
-  "I feel hopeless or down.",
-  "I experience panic attacks.",
-  "I feel like talking to someone about my feelings.",
-  "I struggle to find joy in hobbies.",
-  "I find it hard to concentrate or focus.",
-  "I avoid social interactions even when I want connection.",
-  "I feel physical tension in my body (e.g., headaches, tightness).",
-  "I worry excessively about small things.",
+// New Code to test
+
+const questions = [
+  {
+    text: "I feel anxious or nervous.",
+    type: "negative",
+    category: "emotional",
+    severity: "high",
+  },
+  {
+    text: "I feel overwhelmed by responsibilities.",
+    type: "negative",
+    category: "emotional",
+    severity: "moderate",
+  },
+  {
+    text: "I get irritated easily.",
+    type: "negative",
+    category: "emotional",
+    severity: "low",
+  },
+  {
+    text: "I find it difficult to relax.",
+    type: "negative",
+    category: "physical",
+    severity: "moderate",
+  },
+  {
+    text: "I feel physically drained or fatigued even after resting.",
+    type: "negative",
+    category: "physical",
+    severity: "high",
+  },
+  {
+    text: "I sleep well at night.",
+    type: "positive",
+    category: "physical",
+    severity: "moderate",
+  },
+  {
+    text: "I feel emotionally balanced.",
+    type: "positive",
+    category: "emotional",
+    severity: "moderate",
+  },
+  {
+    text: "I feel hopeless or down.",
+    type: "negative",
+    category: "emotional",
+    severity: "high",
+  },
+  {
+    text: "I experience panic attacks.",
+    type: "negative",
+    category: "emotional",
+    severity: "high",
+  },
+  {
+    text: "I feel energized and motivated to tackle my daily tasks.",
+    type: "positive",
+    category: "cognitive",
+    severity: "moderate",
+  },
+  {
+    text: "I struggle to find joy in hobbies.",
+    type: "negative",
+    category: "emotional",
+    severity: "moderate",
+  },
+  {
+    text: "I find it hard to concentrate or focus.",
+    type: "negative",
+    category: "cognitive",
+    severity: "moderate",
+  },
+  {
+    text: "I feel comfortable setting boundaries with others when needed.",
+    type: "positive",
+    category: "social",
+    severity: "moderate",
+  },
+  {
+    text: "I feel physical tension in my body (e.g., headaches, tightness).",
+    type: "negative",
+    category: "physical",
+    severity: "moderate",
+  },
+  {
+    text: "I take time to engage in activities that help me recharge.",
+    type: "positive",
+    category: "emotional",
+    severity: "moderate",
+  },
 ];
 
 const options = [
@@ -46,70 +103,134 @@ const options = [
   { label: "Always", value: 4 },
 ];
 
+const maxScore = questions.reduce(
+  (sum, q) => sum + (q.severity === "high" ? 8 : 4),
+  0
+);
+const resultConfig = [
+  {
+    max: maxScore * 0.167,
+    class: "very-low",
+    icon: "star",
+    title: "Very Low Stress",
+    message:
+      "Fantastic! Your mental wellness is in top shape. Continue nurturing positive habits like mindfulness and self-care.",
+    ariaLabel: "Very low stress icon",
+  },
+  {
+    max: maxScore * 0.333,
+    class: "excellent",
+    icon: "check-circle",
+    title: "Excellent Mental Wellness",
+    message:
+      "You're doing great! Your mental health is in excellent condition. Keep up your healthy habits and consider sharing your strategies.",
+    ariaLabel: "Excellent wellness icon",
+  },
+  {
+    max: maxScore * 0.5,
+    class: "mild",
+    icon: "info-circle",
+    title: "Mild Stress",
+    message:
+      "You may be experiencing mild stress. Try small stress-relief practices like short walks, journaling, or breathing exercises.",
+    ariaLabel: "Mild stress icon",
+  },
+  {
+    max: maxScore * 0.667,
+    class: "moderate",
+    icon: "exclamation-triangle",
+    title: "Moderate Stress Levels",
+    message:
+      "Your stress levels are noticeable but manageable. Consider relaxation techniques like meditation, yoga, or exercise, and ensure adequate rest.",
+    ariaLabel: "Moderate stress icon",
+  },
+  {
+    max: maxScore * 0.833,
+    class: "severe",
+    icon: "exclamation-circle",
+    title: "Severe Stress - Action Needed",
+    message:
+      "Your stress levels are significant. Reach out to a trusted friend or mental health professional. Therapy or counseling could be highly beneficial.",
+    ariaLabel: "Severe stress icon",
+  },
+  {
+    max: Infinity,
+    class: "critical",
+    icon: "heartbeat",
+    title: "Critical Stress - Urgent Support Recommended",
+    message:
+      "Your responses suggest critical stress levels. Please prioritize seeking help from a mental health professional immediately. You're not alone, and support is available.",
+    ariaLabel: "Critical stress icon",
+  },
+];
+
 let currentQuestion = 0;
 let answers = {};
 
 function initializeQuestions() {
   const container = document.getElementById("questions-container");
+  container.innerHTML = questions
+    .map(
+      (question, index) => `
+        <div class="question-card ${
+          index === 0 ? "active" : ""
+        }" id="question-${index}" role="group" aria-labelledby="question-text-${index}">
+          <div class="question-header">
+            <div class="question-number">${index + 1}</div>
+            <div class="question-text" id="question-text-${index}">${
+        question.text
+      }</div>
+          </div>
+          <div class="options-grid">
+            ${options
+              .map(
+                (option, optIndex) => `
+              <button class="option-button" data-question="${index}" data-value="${option.value}" aria-label="${option.label} (${option.value})">
+                <div class="option-label">${option.label}</div>
+                <div class="option-score">(${option.value})</div>
+              </button>
+            `
+              )
+              .join("")}
+          </div>
+        </div>
+      `
+    )
+    .join("");
 
-  questions.forEach((question, index) => {
-    const questionCard = document.createElement("div");
-    questionCard.className = "question-card";
-    questionCard.id = `question-${index}`;
-
-    if (index === 0) {
-      questionCard.classList.add("active");
-    }
-
-    questionCard.innerHTML = `
-                    <div class="question-header">
-                        <div class="question-number">${index + 1}</div>
-                        <div class="question-text">${question}</div>
-                    </div>
-                    <div class="options-grid">
-                        ${options
-                          .map(
-                            (option) => `
-                            <div class="option-button" onclick="selectOption(${index}, ${option.value})">
-                                <div class="option-label">${option.label}</div>
-                                <div class="option-score">(${option.value})</div>
-                            </div>
-                        `
-                          )
-                          .join("")}
-                    </div>
-                `;
-
-    container.appendChild(questionCard);
-  });
+  container.addEventListener("click", handleOptionClick);
 }
 
-function selectOption(questionIndex, value) {
+function handleOptionClick(event) {
+  const button = event.target.closest(".option-button");
+  if (!button) return;
+
+  const questionIndex = parseInt(button.dataset.question);
+  const value = parseInt(button.dataset.value);
+
   answers[questionIndex] = value;
-
-  // Update visual selection
-  const questionCard = document.getElementById(`question-${questionIndex}`);
-  const options = questionCard.querySelectorAll(".option-button");
-
-  options.forEach((option, index) => {
-    option.classList.remove("selected");
-    if (index === value) {
-      option.classList.add("selected");
-    }
-  });
-
+  updateOptionSelection(questionIndex, value);
   updateProgress();
   updateNavigation();
+}
+
+function updateOptionSelection(questionIndex, value) {
+  const questionCard = document.getElementById(`question-${questionIndex}`);
+  questionCard.querySelectorAll(".option-button").forEach((btn, index) => {
+    btn.classList.toggle("selected", index === value);
+    btn.setAttribute("aria-pressed", index === value ? "true" : "false");
+  });
 }
 
 function updateProgress() {
   const answeredCount = Object.keys(answers).length;
   const percentage = (answeredCount / questions.length) * 100;
+  const progressFill = document.getElementById("progress-fill");
+  const progressText = document.getElementById("progress-text");
 
-  document.getElementById("progress-fill").style.width = `${percentage}%`;
-  document.getElementById(
-    "progress-text"
-  ).textContent = `${answeredCount} of ${questions.length}`;
+  progressFill.style.width = `${percentage}%`;
+  progressFill.setAttribute("aria-valuenow", percentage);
+  progressText.textContent = `${answeredCount} of ${questions.length}`;
 }
 
 function updateNavigation() {
@@ -119,18 +240,30 @@ function updateNavigation() {
   const counter = document.getElementById("question-counter");
 
   prevBtn.disabled = currentQuestion === 0;
+  prevBtn.setAttribute(
+    "aria-disabled",
+    currentQuestion === 0 ? "true" : "false"
+  );
 
   const isCurrentAnswered = answers.hasOwnProperty(currentQuestion);
-  const allAnswered = Object.keys(answers).length === questions.length;
+  const answeredCount = Object.keys(answers).length;
 
   if (currentQuestion === questions.length - 1) {
     nextBtn.style.display = "none";
     submitBtn.style.display = "flex";
-    submitBtn.disabled = !allAnswered;
+    submitBtn.disabled = answeredCount === 0;
+    submitBtn.setAttribute(
+      "aria-disabled",
+      answeredCount === 0 ? "true" : "false"
+    );
   } else {
     nextBtn.style.display = "flex";
     submitBtn.style.display = "none";
     nextBtn.disabled = !isCurrentAnswered;
+    nextBtn.setAttribute(
+      "aria-disabled",
+      !isCurrentAnswered ? "true" : "false"
+    );
   }
 
   counter.textContent = `Question ${currentQuestion + 1} of ${
@@ -139,52 +272,85 @@ function updateNavigation() {
 }
 
 function nextQuestion() {
-  if (currentQuestion < questions.length - 1) {
-    document
-      .getElementById(`question-${currentQuestion}`)
-      .classList.remove("active");
-    currentQuestion++;
-    document
-      .getElementById(`question-${currentQuestion}`)
-      .classList.add("active");
-    updateNavigation();
-  }
+  if (currentQuestion >= questions.length - 1) return;
+  document
+    .getElementById(`question-${currentQuestion}`)
+    .classList.remove("active");
+  currentQuestion++;
+  document
+    .getElementById(`question-${currentQuestion}`)
+    .classList.add("active");
+  updateNavigation();
 }
 
 function previousQuestion() {
-  if (currentQuestion > 0) {
-    document
-      .getElementById(`question-${currentQuestion}`)
-      .classList.remove("active");
-    currentQuestion--;
-    document
-      .getElementById(`question-${currentQuestion}`)
-      .classList.add("active");
-    updateNavigation();
-  }
+  if (currentQuestion <= 0) return;
+  document
+    .getElementById(`question-${currentQuestion}`)
+    .classList.remove("active");
+  currentQuestion--;
+  document
+    .getElementById(`question-${currentQuestion}`)
+    .classList.add("active");
+  updateNavigation();
+}
+
+function calculateScore() {
+  return Object.entries(answers).reduce((sum, [index, value]) => {
+    const question = questions[index];
+    const weight = question.severity === "high" ? 2 : 1;
+    return (
+      sum +
+      (question.type === "positive" ? (4 - value) * weight : value * weight)
+    );
+  }, 0);
+}
+
+function calculateSubScores() {
+  const categories = ["emotional", "physical", "cognitive", "social"];
+  return categories.reduce((subScores, category) => {
+    const maxCategoryScore = questions
+      .filter((q) => q.category === category)
+      .reduce((sum, q) => sum + (q.severity === "high" ? 8 : 4), 0);
+    subScores[category] = {
+      score: Object.entries(answers)
+        .filter(([index]) => questions[index].category === category)
+        .reduce((sum, [index, value]) => {
+          const question = questions[index];
+          const weight = question.severity === "high" ? 2 : 1;
+          return (
+            sum +
+            (question.type === "positive"
+              ? (4 - value) * weight
+              : value * weight)
+          );
+        }, 0),
+      max: maxCategoryScore,
+    };
+    return subScores;
+  }, {});
 }
 
 function submitAssessment() {
+  if (Object.keys(answers).length === 0) return;
   document.querySelector(".content").style.display = "none";
   document.getElementById("loading").classList.add("show");
-
-  setTimeout(() => {
-    showResults();
-  }, 2000);
+  setTimeout(showResults, 2000);
 }
 
 function showResults() {
   document.getElementById("loading").classList.remove("show");
   document.getElementById("result-container").classList.add("show");
 
-  const totalScore = Object.values(answers).reduce(
-    (sum, value) => sum + value,
-    0
-  );
-  const maxScore = questions.length * 4;
-  const percentage = (totalScore / maxScore) * 100;
+  const answeredQuestions = Object.keys(answers).length;
+  const maxAnsweredScore = Object.entries(answers).reduce((sum, [index]) => {
+    const question = questions[index];
+    return sum + (question.severity === "high" ? 8 : 4);
+  }, 0);
+  const totalScore = calculateScore();
+  const percentage =
+    maxAnsweredScore > 0 ? (totalScore / maxAnsweredScore) * 100 : 0;
 
-  // Update score displays
   document.getElementById("total-score").textContent = totalScore;
   document.getElementById("percentage-score").textContent = `${Math.round(
     percentage
@@ -193,7 +359,6 @@ function showResults() {
     percentage
   )}%`;
 
-  // Create chart
   const ctx = document.getElementById("resultChart").getContext("2d");
   new Chart(ctx, {
     type: "doughnut",
@@ -203,123 +368,101 @@ function showResults() {
         {
           data: [percentage, 100 - percentage],
           backgroundColor: [
-            percentage > 50
+            percentage > 66
               ? "#f44336"
-              : percentage > 25
+              : percentage > 33
               ? "#ff9800"
               : "#4caf50",
             "#e0e0e0",
           ],
           borderWidth: 0,
-          cutout: "70%",
         },
       ],
     },
     options: {
       responsive: true,
       maintainAspectRatio: false,
-      plugins: {
-        legend: {
-          display: false,
-        },
-      },
+      plugins: { legend: { display: false } },
     },
   });
 
-  // Update result card
+  const subScores = calculateSubScores();
+  const subCtx = document.getElementById("subScoreChart").getContext("2d");
+  new Chart(subCtx, {
+    type: "bar",
+    data: {
+      labels: ["Emotional", "Physical", "Cognitive", "Social"],
+      datasets: [
+        {
+          label: "Stress Score",
+          data: Object.values(subScores).map((s) => (s.score / s.max) * 100),
+          backgroundColor: "#4caf50",
+          borderColor: "#4caf50",
+          borderWidth: 1,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 100,
+          title: { display: true, text: "Stress Percentage" },
+        },
+        x: { title: { display: true, text: "Category" } },
+      },
+      plugins: { legend: { display: false } },
+    },
+  });
+
   const resultCard = document.getElementById("result-card");
   const resultIcon = document.getElementById("result-icon");
   const resultTitle = document.getElementById("result-title");
   const resultMessage = document.getElementById("result-message");
 
-  // if (totalScore <= 20) {
-  //     resultCard.className = 'result-card excellent';
-  //     resultIcon.innerHTML = '<i class="fas fa-check-circle"></i>';
-  //     resultTitle.textContent = 'Excellent Mental Wellness';
-  //     resultMessage.textContent = "You're doing great! Your mental health appears to be in excellent condition. Keep up your healthy habits and continue prioritizing your well-being.";
-  // } else if (totalScore <= 40) {
-  //     resultCard.className = 'result-card moderate';
-  //     resultIcon.innerHTML = '<i class="fas fa-exclamation-triangle"></i>';
-  //     resultTitle.textContent = 'Moderate Stress Levels';
-  //     resultMessage.textContent = "You're experiencing some stress, which is normal. Consider incorporating relaxation techniques like meditation, deep breathing exercises, or regular physical activity into your routine.";
-  // } else {
-  //     resultCard.className = 'result-card high';
-  //     resultIcon.innerHTML = '<i class="fas fa-exclamation-circle"></i>';
-  //     resultTitle.textContent = 'High Stress - Support Recommended';
-  //     resultMessage.textContent = "Your responses indicate significant stress levels. Please consider reaching out to a mental health professional, counselor, or therapist. Remember, seeking help is a sign of strength, and you're not alone in this journey.";
-  // }
-
-  // Validate totalScore
   if (typeof totalScore !== "number" || isNaN(totalScore) || totalScore < 0) {
     resultCard.className = "result-card error";
     resultIcon.innerHTML =
       '<i class="fas fa-times-circle" aria-label="Error icon"></i>';
     resultTitle.textContent = "Invalid Score";
     resultMessage.textContent =
-      "Unable to process your score. Please ensure all questions are answered correctly.";
-  } else if (totalScore <= 10) {
-    resultCard.className = "result-card very-low";
-    resultIcon.innerHTML =
-      '<i class="fas fa-star" aria-label="Very low stress icon"></i>';
-    resultTitle.textContent = "Very Low Stress";
-    resultMessage.textContent =
-      "Fantastic! Your mental wellness is in top shape. Continue nurturing your positive habits, such as mindfulness and self-care, to maintain this state.";
-  } else if (totalScore <= 20) {
-    resultCard.className = "result-card excellent";
-    resultIcon.innerHTML =
-      '<i class="fas fa-check-circle" aria-label="Excellent wellness icon"></i>';
-    resultTitle.textContent = "Excellent Mental Wellness";
-    resultMessage.textContent =
-      "You're doing great! Your mental health appears to be in excellent condition. Keep up your healthy habits and consider sharing your strategies with others.";
-  } else if (totalScore <= 30) {
-    resultCard.className = "result-card mild";
-    resultIcon.innerHTML =
-      '<i class="fas fa-info-circle" aria-label="Mild stress icon"></i>';
-    resultTitle.textContent = "Mild Stress";
-    resultMessage.textContent =
-      "You may be experiencing mild stress. Try incorporating small stress-relief practices, like short walks, journaling, or breathing exercises, into your daily routine.";
-  } else if (totalScore <= 40) {
-    resultCard.className = "result-card moderate";
-    resultIcon.innerHTML =
-      '<i class="fas fa-exclamation-triangle" aria-label="Moderate stress icon"></i>';
-    resultTitle.textContent = "Moderate Stress Levels";
-    resultMessage.textContent =
-      "Your stress levels are noticeable but manageable. Consider relaxation techniques like meditation, yoga, or regular exercise, and ensure you’re getting enough rest.";
-  } else if (totalScore <= 50) {
-    resultCard.className = "result-card severe";
-    resultIcon.innerHTML =
-      '<i class="fas fa-exclamation-circle" aria-label="Severe stress icon"></i>';
-    resultTitle.textContent = "Severe Stress - Action Needed";
-    resultMessage.textContent =
-      "Your stress levels are significant. Reach out to a trusted friend, family member, or mental health professional. Exploring therapy or counseling could be highly beneficial.";
-  } else {
-    resultCard.className = "result-card critical";
-    resultIcon.innerHTML =
-      '<i class="fas fa-heartbeat" aria-label="Critical stress icon"></i>';
-    resultTitle.textContent = "Critical Stress - Urgent Support Recommended";
-    resultMessage.textContent =
-      "Your responses suggest critical stress levels. Please prioritize seeking help from a mental health professional or counselor immediately. You’re not alone, and support is available.";
+      "Unable to process your score. Please try again.";
+    return;
   }
+
+  const result = resultConfig.find((range) => totalScore <= range.max);
+  resultCard.className = `result-card ${result.class}`;
+  resultIcon.innerHTML = `<i class="fas fa-${result.icon}" aria-label="${result.ariaLabel}"></i>`;
+  resultTitle.textContent = result.title;
+  resultMessage.textContent = result.message;
+
+  const highScores = Object.entries(answers)
+    .filter(
+      ([index, value]) => value >= 3 && questions[index].type === "negative"
+    )
+    .map(([index]) => questions[index].text);
+  if (highScores.length > 0) {
+    resultMessage.textContent += ` Specific concerns: ${highScores.join(
+      ", "
+    )}.`;
+  }
+
+  resultMessage.textContent += ` Sub-scores: Emotional: ${subScores.emotional.score}/${subScores.emotional.max}, Physical: ${subScores.physical.score}/${subScores.physical.max}, Cognitive: ${subScores.cognitive.score}/${subScores.cognitive.max}, Social: ${subScores.social.score}/${subScores.social.max}.`;
 }
 
 function restartAssessment() {
   currentQuestion = 0;
   answers = {};
-
-  // Reset UI
   document.querySelector(".content").style.display = "block";
   document.getElementById("result-container").classList.remove("show");
 
-  // Reset questions
   document.querySelectorAll(".question-card").forEach((card, index) => {
-    card.classList.remove("active");
-    if (index === 0) {
-      card.classList.add("active");
-    }
-
-    // Reset selections
-    card.querySelectorAll(".option-button").forEach((option) => {
-      option.classList.remove("selected");
+    card.classList.toggle("active", index === 0);
+    card.querySelectorAll(".option-button").forEach((btn) => {
+      btn.classList.remove("selected");
+      btn.setAttribute("aria-pressed", "false");
     });
   });
 
@@ -327,9 +470,17 @@ function restartAssessment() {
   updateNavigation();
 }
 
-// Initialize the application
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
   initializeQuestions();
   updateNavigation();
+  document
+    .getElementById("prev-btn")
+    .addEventListener("click", previousQuestion);
+  document.getElementById("next-btn").addEventListener("click", nextQuestion);
+  document
+    .getElementById("submit-btn")
+    .addEventListener("click", submitAssessment);
+  document
+    .getElementById("restart-btn")
+    .addEventListener("click", restartAssessment);
 });
-// </script>
