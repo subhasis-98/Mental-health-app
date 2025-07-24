@@ -1254,3 +1254,111 @@ body {
     font-size: 28px;
   }
 }
+.diary-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.diary-popup-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.diary-popup {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) translateY(100%);
+  width: 100%;
+  max-width: 414px;
+  background: #ffffff;
+  border-radius: 24px 24px 0 0;
+  padding: 28px 20px 24px 20px;
+  max-height: 90vh;
+  overflow-y: auto;
+  transition: transform 0.3s ease;
+  box-shadow: 0 -2px 20px rgba(0, 0, 0, 0.1);
+}
+
+.diary-popup-overlay.active .diary-popup {
+  transform: translateX(-50%) translateY(0);
+}
+
+.diary-popup-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.diary-popup-title {
+  font-size: 1.32rem;
+  font-weight: 700;
+  color: #16233a;
+}
+
+.diary-popup-close {
+  background: none;
+  border: none;
+  font-size: 1.7rem;
+  color: #a3a3b3;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.16s;
+}
+
+.diary-popup-close:hover {
+  background: #e8ebfa;
+}
+
+.diary-popup-content textarea {
+  width: 100%;
+  min-height: 100px;
+  margin-bottom: 22px;
+  padding: 18px;
+  border: none;
+  border-radius: 14px;
+  background: #ebebfe;
+  font-size: 1rem;
+  color: #555;
+  resize: vertical;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.diary-popup-content textarea:focus {
+  background: #f5f5ff;
+  border: 1px solid #a5b4fc;
+}
+
+.diary-popup-save {
+  width: 100%;
+  color: #ffffff;
+  background: linear-gradient(135deg, #a855f7 0%, #8b5cf6 100%);
+  border: none;
+  border-radius: 25px;
+  font-size: 1.12rem;
+  padding: 12px 0;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.15s;
+}
+
+.diary-popup-save:hover,
+.diary-popup-save:focus {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(168, 85, 247, 0.4);
+}

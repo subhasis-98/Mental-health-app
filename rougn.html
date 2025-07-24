@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wellness Tracker</title>
+    <link rel="stylesheet" href="project/styles.css">
+
+    <script type="module" src="public/js/homepage.js"></script>
+
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Header Section -->
+        <header class="header">
+            <div class="profile-section">
+                <div class="avatar">
+                    <img src="project/7309667.jpg" alt="Profile" />
+                </div>
+                <div class="greeting">
+                    <h3>Hello, <span id="loggedUserFName">Guest</span> <span id="loggedUserLName"></span> 👋</h3>
+                    <p>How was your sleep?</p>
+                </div>
+            </div>
+            <div class="mood-selector">
+                <div class="mood-option" data-mood="very-sad">😢</div>
+                <div class="mood-option" data-mood="sad">😔</div>
+                <div class="mood-option" data-mood="neutral">😐</div>
+                <div class="mood-option" data-mood="happy">😊</div>
+                <div class="mood-option selected" data-mood="very-happy">😄</div>
+            </div>
+        </header>
+
+        <!-- Calendar Section -->
+        <section class="calendar-section">
+            <div class="calendar-header">
+                <h2>July</h2>
+                <div class="calendar-icon">📅</div>
+            </div>
+            <div class="week-view">
+                <div class="day-item"><span class="day-name">Mon</span><span class="day-number">21</span></div>
+                <div class="day-item active"><span class="day-name">Tue</span><span class="day-number">22</span></div>
+                <div class="day-item"><span class="day-name">Wed</span><span class="day-number">23</span></div>
+                <div class="day-item"><span class="day-name">Thu</span><span class="day-number">24</span></div>
+                <div class="day-item"><span class="day-name">Fri</span><span class="day-number">25</span></div>
+                <div class="day-item"><span class="day-name">Sat</span><span class="day-number">26</span></div>
+                <div class="day-item"><span class="day-name">Sun</span><span class="day-number">27</span></div>
+            </div>
+        </section>
+
+        <!-- Quick Support Section -->
+        <section class="quick-support">
+            <h2>Quick support</h2>
+            <div class="support-cards">
+                <div class="support-card" data-action="coping-cards">
+                    <div class="support-icon">🃏</div><span>Coping cards</span>
+                </div>
+                <div class="support-card emergency" data-action="emergency-help">
+                    <div class="support-icon">💎</div><span>Emergency help</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Journal Records Section -->
+        <section class="journal-section">
+            <h2>New journal record</h2>
+            <div class="journal-options">
+                <div class="journal-card" data-action="mood-record">
+                    <div class="journal-icon mood-icon">😊</div><span>Mood record</span>
+                </div>
+                <div class="journal-card" data-action="diary-record">
+                    <div class="journal-icon diary-icon">📋</div><span>Diary record</span>
+                </div>
+                <div class="journal-card" data-action="meditation">
+                    <div class="journal-icon meditation-icon">🧘</div><span>Moments for meditation</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Activities Section -->
+        <section class="activities-section">
+            <h2>Activities for today</h2>
+            <div class="activity-list">
+                <div class="activity-item" data-action="save-mood">
+                    <div class="activity-icon orange">🧠</div>
+                    <div class="activity-content">
+                        <h3>Check your stress level</h3>
+                        <p>Get an instant idea of your stress level.</p>
+                    </div>
+                    <div class="activity-arrow">→</div>
+                </div>
+                <div class="activity-item" data-action="how-feel">
+                    <div class="activity-icon purple">😊</div>
+                    <div class="activity-content">
+                        <h3>How do you feel?</h3>
+                        <p>Add your emotions.</p>
+                    </div>
+                    <div class="activity-arrow">→</div>
+                </div>
+                <div class="activity-item" data-action="record-sleep">
+                    <div class="activity-icon blue">🌙</div>
+                    <div class="activity-content">
+                        <h3>Record your sleep</h3>
+                        <p>How was your sleep last night?</p>
+                    </div>
+                    <div class="activity-arrow">→</div>
+                </div>
+                <div class="activity-item" data-action="notifications">
+                    <div class="activity-icon light-blue">🔔</div>
+                    <div class="activity-content">
+                        <h3>🔔 Allow push notifications</h3>
+                        <p>Never miss a message!</p>
+                    </div>
+                    <div class="activity-arrow">→</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Daily Tip Section -->
+        <section class="daily-tip">
+            <h2>Daily tip 🎯</h2>
+            <div class="tip-content">
+                <p>Start each day with the affirmation "Today is a special day in my life."</p>
+            </div>
+        </section>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <div class="nav-item" data-section="chat">
+                <div class="nav-icon">💬</div>
+            </div>
+            <div class="nav-item" data-section="journal">
+                <div class="nav-icon">📝</div>
+            </div>
+            <div class="nav-item active" data-section="home">
+                <div class="nav-icon">🏠</div>
+            </div>
+            <div class="nav-item" data-section="stats">
+                <div class="nav-icon">⏸️</div>
+            </div>
+            <div class="nav-item" data-section="settings">
+                <button id="logout" class="nav-icon"
+                    style="border: none; background: none; cursor: pointer;">⚙️</button>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Diary Popup -->
+    <div id="diaryPopupOverlay" class="diary-popup-overlay" aria-hidden="true" role="dialog"
+        aria-labelledby="diaryPopupTitle">
+        <div class="diary-popup" role="document">
+            <div class="diary-popup-header">
+                <span id="diaryPopupTitle" class="diary-popup-title">Hello diary,</span>
+                <button class="diary-popup-close" aria-label="Close diary popup">&times;</button>
+            </div>
+            <div class="diary-popup-content">
+                <textarea id="diaryTextarea"
+                    placeholder="Feel free to jot down anything you want to share with your diary right here." rows="6"
+                    aria-describedby="diaryInstruction"></textarea>
+                <button id="diaryPopupSave" class="diary-popup-save">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="project/script.js"></script>
+</body>
+
+</html>
