@@ -783,10 +783,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     </div>
                     <div class="session-controls">
                         <button class="control-btn play-pause-btn" aria-label="Pause meditation">
-                            <span class="play-icon">▶</span>
-                            <span class="pause-icon">⏸</span>
+                            <span class="play-icon">▶️</span>
+                            <span class="pause-icon">⏸️</span>
                         </button>
-                        <button class="control-btn reset-btn" aria-label="Stop meditation">↻</button>
+                        <button class="control-btn reset-btn" aria-label="Stop meditation">🔄</button>
                     </div>
                     <div class="session-status">Active Session</div>
                 </div>
@@ -826,7 +826,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         display: flex;
                         align-items: center;
                         justify-content: space-between;
-                        padding: 1.5rem;
+                        padding: 1rem;
                         position: relative;
                     }
                     .session-close-btn {
@@ -883,7 +883,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         flex-direction: column;
                         align-items: center;
                         justify-content: center;
-                        padding: 1rem;
+                        padding: 0 1rem;
                         text-align: center;
                     }
                     .timer-display {
@@ -897,8 +897,8 @@ document.addEventListener("DOMContentLoaded", () => {
                         position: relative;
                     }
                     .breathing-circle {
-                        width: 250px;
-                        height: 250px;
+                        width: 200px;
+                        height: 200px;
                         border-radius: 50%;
                         background: linear-gradient(135deg, rgba(139, 92, 246, 0.3), rgba(236, 72, 153, 0.3));
                         display: flex;
@@ -971,6 +971,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     .reset-btn {
                         width: 60px;
                         height: 60px;
+                        font-size: 1.5rem;
                     }
                     .control-btn:hover {
                         background: rgba(255, 255, 255, 0.3);
